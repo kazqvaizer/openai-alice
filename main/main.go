@@ -1,9 +1,9 @@
 package main
 
 import (
-	"alice-talking/dialog"
-	"alice-talking/server"
 	"fmt"
+	"github.com/kazqvaizer/openai-alice/dialog"
+	"github.com/kazqvaizer/openai-alice/server"
 	"os"
 
 	env "github.com/joho/godotenv"

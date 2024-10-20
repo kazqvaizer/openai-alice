@@ -1,4 +1,4 @@
-module alice-talking
+module github.com/kazqvaizer/openai-alice
 
 go 1.23.2
 

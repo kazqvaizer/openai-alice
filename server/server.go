@@ -1,8 +1,8 @@
 package server
 
 import (
-	"alice-talking/dialog"
 	"fmt"
+	"github.com/kazqvaizer/openai-alice/dialog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
