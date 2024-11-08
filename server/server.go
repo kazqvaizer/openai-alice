@@ -2,8 +2,9 @@ package server
 
 import (
 	"fmt"
-	"github.com/kazqvaizer/openai-alice/dialog"
 	"net/http"
+
+	"github.com/kazqvaizer/openai-alice/dialog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,8 +15,12 @@ type ServerConfig struct {
 	Token string
 }
 
+type AliceRequestScheme struct {
+	OriginalUtterance string `json:"original_utterance"`
+}
+
 type AliceScheme struct {
-	Message string `json:"message"`
+	Request AliceRequestScheme `json:"request"`
 }
 
 func StartServer(config ServerConfig, dconf dialog.DialogConfig) {
@@ -43,7 +48,7 @@ func WebhookHandler(token string, dconf dialog.DialogConfig) gin.HandlerFunc {
 			return
 		}
 
-		answer, err := dialog.AskAlice(aliceMsg.Message, dconf)
+		answer, err := dialog.AskAlice(aliceMsg.Request.OriginalUtterance, dconf)
 
 		if err != nil {
 			fmt.Printf("main error: %v\n", err)
@@ -52,7 +57,11 @@ func WebhookHandler(token string, dconf dialog.DialogConfig) gin.HandlerFunc {
 
 		fmt.Println(answer)
 
-		ctx.IndentedJSON(http.StatusOK, gin.H{"message": answer})
-
+		ctx.IndentedJSON(http.StatusOK, gin.H{
+			"response": gin.H{
+				"text": answer,
+			},
+			"version": "1.0",
+		})
 	}
 }

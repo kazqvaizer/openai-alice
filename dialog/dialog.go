@@ -17,7 +17,7 @@ func AskAlice(question string, config DialogConfig) (string, error) {
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
-			Model: openai.GPT3Dot5Turbo0125,
+			Model: openai.GPT4oLatest,
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
