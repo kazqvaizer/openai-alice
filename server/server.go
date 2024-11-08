@@ -57,11 +57,6 @@ func WebhookHandler(token string, dconf dialog.DialogConfig) gin.HandlerFunc {
 
 		fmt.Println(answer)
 
-		ctx.IndentedJSON(http.StatusOK, gin.H{
-			"response": gin.H{
-				"text": answer,
-			},
-			"version": "1.0",
-		})
+		ctx.IndentedJSON(http.StatusOK, gin.H{"response": gin.H{"text": answer}, "version": "1.0"})
 	}
 }

@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	err := env.Load("../.env")
+	err := env.Load()
 	if err != nil {
 		fmt.Printf("Problem with `.env` file: %v\n", err)
 		return
